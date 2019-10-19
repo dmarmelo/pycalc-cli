@@ -2,15 +2,14 @@ import re
 
 
 def main():
-    regex = re.compile("^\\s*(\\d+\\s*[\\+\\-\\*\\/]\\s*)*\\d+\\s*$")
+    regex = re.compile("^\\s*(\\d+(\\.\\d+)?\\s*[+\\-*/]\\s*)*\\d+(\\.\\d+)?\\s*$")
     while True:
-        user_input = input("Enter your expression > ")
+        user_input = input("Enter your expression > ").lstrip().rstrip()
         if user_input == "quit":
             break
         elif regex.match(user_input):
-            # TODO decimal numbers
             try:
-                print(user_input.lstrip().rstrip() + " = " + str(eval(user_input)))
+                print(user_input + " = " + str(eval(user_input)))
             except ZeroDivisionError:
                 print("ERROR Division by zero!")
 
