@@ -1,15 +1,17 @@
-import re
+import regex
+from math import sqrt, sin, cos, tan, log
 
 
 def main():
-    regex = re.compile("^\\s*(\\d+(\\.\\d+)?\\s*[+\\-*/\\^]\\s*)*\\d+(\\.\\d+)?\\s*$")
+    pattern = regex.compile(r"^\s*((?<exp>(?<dig>\d+(\.\d+)?)|((sqrt|sin|cos|tan)\s*\(\s*((?&dig)|(?&exp))\s*\))|((log)\s*\(\s*(?&dig)\s*,\s*(?&dig)\s*\)))\s*[+\-*\/\^]\s*)*(?&exp)\s*$")
     while True:
-        user_input = input("Enter your expression > ").lstrip().rstrip()
-        if user_input == "quit":
+        raw_user_input = input("Enter your expression > ").strip()
+        if raw_user_input == "quit":
             break
-        elif regex.match(user_input):
+        elif pattern.match(raw_user_input):
             try:
-                expression = user_input.replace("^", "**")
+                expression = raw_user_input.replace("^", "**")
+                user_input = regex.sub(r"\s+", " ", raw_user_input)
                 print(user_input + " = " + str(eval(expression)))
             except ZeroDivisionError:
                 print("ERROR Division by zero!")
