@@ -3,7 +3,7 @@ from math import sqrt, sin, cos, tan, log, pi, e
 
 
 def main():
-    pattern = regex.compile(r"^\s*(?<rec>((?<exp>(?<num>\d+(\.\d+)?)|(\(\s*((?&num)|(?&rec))\s*\))|((sqrt|sin|cos|tan)\s*\(\s*((?&num)|(?&rec))\s*\))|((log)\s*\(\s*((?&num)|(?&rec))\s*,\s*((?&num)|(?&rec))\s*\))|(pi|e))\s*[+\-*\/\^]\s*)*(?&exp)\s*)$")
+    pattern = regex.compile(r"^\s*(?<rec>((?<exp>(?<num>-?\d+(\.\d+)?)|(\(\s*((?&num)|(?&rec))\s*\))|((sqrt|sin|cos|tan)\s*\(\s*((?&num)|(?&rec))\s*\))|((log)\s*\(\s*((?&num)|(?&rec))\s*,\s*((?&num)|(?&rec))\s*\))|(pi|e))\s*[+\-*\/\^]\s*)*(?&exp)\s*)$")
     print("Type 'help' for help and 'quit' to exit.")
     print("Enter your expression:")
     while True:
@@ -19,6 +19,8 @@ def main():
                 print(user_input + " = " + str(eval(expression)))
             except ZeroDivisionError:
                 print("ERROR Division by zero!")
+            except:
+                print("Arnaldo's fault!")
         else:
             print("Invalid Expression!")
 
