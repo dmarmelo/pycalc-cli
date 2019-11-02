@@ -3,7 +3,7 @@ from math import sqrt, sin, cos, tan, log, pi, e
 
 
 def main():
-    pattern = regex.compile(r"^\s*(?<rec>((?<exp>(?<num>\d+(\.\d+)?)|((sqrt|sin|cos|tan)\s*\(\s*((?&num)|(?&rec))\s*\))|((log)\s*\(\s*((?&num)|(?&rec))\s*,\s*((?&num)|(?&rec))\s*\))|(pi|e))\s*[+\-*\/\^]\s*)*(?&exp)\s*)$")
+    pattern = regex.compile(r"^\s*(?<rec>((?<exp>(?<num>\d+(\.\d+)?)|(\(\s*((?&num)|(?&rec))\s*\))|((sqrt|sin|cos|tan)\s*\(\s*((?&num)|(?&rec))\s*\))|((log)\s*\(\s*((?&num)|(?&rec))\s*,\s*((?&num)|(?&rec))\s*\))|(pi|e))\s*[+\-*\/\^]\s*)*(?&exp)\s*)$")
     print("Type 'help' for help and 'quit' to exit.")
     print("Enter your expression:")
     while True:
@@ -37,7 +37,7 @@ def calc_help():
     print("log(n, b) -> Logarithm of n to base b")
     print("pi -> Constant Pi")
     print("e -> Constant e")
-    print("Example: '1 + 2 * 3^4 + sqrt(3 * 2) + cos(pi) / log(10, e)'")
+    print("Example: '(1 + 2) * 3^4 + sqrt(3 * 2) + cos(pi) / log(10, e)'")
 
 
 if __name__ == '__main__':
